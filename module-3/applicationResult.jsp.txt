@@ -1,0 +1,78 @@
+<!-- Cameron Mendez -->
+<!-- 01/26/2026 -->
+<!-- Module-3 -->
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Submission Result</title>
+</head>
+<body>
+
+<h2>Job Application Submission Details</h2>
+<p>Below is the information you submitted for your job application.</p>
+
+<%
+    //Retrieve form data
+    String fullname = request.getParameter("fullname");
+    String email = request.getParameter("email");
+    String experience = request.getParameter("experience");
+    String position = request.getParameter("position");
+    String employmentType = request.getParameter("employmentType");
+    String[] skills = request.getParameterValues("skills");
+%>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Field Description</th>
+        <th>Submitted Data</th>
+    </tr>
+
+    <tr>
+        <td>Full Name</td>
+        <td><%= fullname %></td>
+    </tr>
+
+    <tr>
+        <td>Email Address</td>
+        <td><%= email %></td>
+    </tr>
+
+    <tr>
+        <td>Years of Experience</td>
+        <td><%= experience %></td>
+    </tr>
+
+    <tr>
+        <td>Position Applied For</td>
+        <td><%= position %></td>
+    </tr>
+
+    <tr>
+        <td>Employment Type</td>
+        <td><%= employmentType %></td>
+    </tr>
+
+    <tr>
+        <td>Skills</td>
+        <td>
+            <%
+                if (skills != null) {
+                    for (int i = 0; i < skills.length; i++) {
+                        out.print(skills[i] + " ");
+                    }
+                } else {
+                    out.print("No skills selected");
+                }
+            %>
+        </td>
+    </tr>
+
+</table>
+
+<br>
+<p><b>Thank you for applying!</b></p>
+
+</body>
+</html>

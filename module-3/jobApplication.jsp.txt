@@ -1,0 +1,47 @@
+<!-- Cameron Mendez -->
+<!-- 01/26/2026 -->
+<!-- Module-3 -->
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Application Form</title>
+</head>
+<body>
+
+<h2>Online Job Application</h2>
+<p>Please fill out all fields below.</p>
+
+<form action="applicationResult.jsp" method="post">
+
+    Full Name: <input type="text" name="fullname"><br><br>
+
+    Email Address: <input type="email" name="email"><br><br>
+
+    Years of Experience:
+    <input type="number" name="experience"><br><br>
+
+    Position Applying For:
+    <select name="position">
+        <option value="Developer">Developer</option>
+        <option value="Designer">Designer</option>
+        <option value="Manager">Manager</option>
+    </select><br><br>
+
+    Employment Type:<br>
+    <input type="radio" name="employmentType" value="Full-Time"> Full-Time
+    <input type="radio" name="employmentType" value="Part-Time"> Part-Time<br><br>
+
+    Skills (check all that apply):<br>
+    <input type="checkbox" name="skills" value="Java"> Java
+    <input type="checkbox" name="skills" value="HTML"> HTML
+    <input type="checkbox" name="skills" value="CSS"> CSS
+    <input type="checkbox" name="skills" value="SQL"> SQL<br><br>
+
+    <input type="submit" value="Submit Application">
+
+</form>
+
+</body>
+</html>
