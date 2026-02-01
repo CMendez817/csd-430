@@ -1,0 +1,66 @@
+<%@ page import="mendez.model.DataBean" %>
+<%
+    //Create a DataBean object
+    DataBean record = new DataBean();
+
+    //Populate the bean with data
+    record.setRecordId(101);
+    record.setFirstName("Cameron");
+    record.setLastName("Mendez");
+    record.setEmail("cameron@email.com");
+    record.setDepartment("Field Operations");
+%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+   <!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Data Display</title>
+</head>
+<body>
+
+<h1>Employee Record Information</h1>
+<p>This page displays data stored inside a JavaBean.</p>
+<p><strong>Record Description:</strong> Each field below describes employee identity and work information.</p>
+   
+
+<table border="1" cellpadding="6" cellspacing="0">
+    <tr>
+        <th>Field Name</th>
+        <th>Value</th>
+        <th>Description</th>
+    </tr>
+
+    <tr>
+        <td>Record ID</td>
+        <td><%= record.getRecordId() %></td>
+        <td>Unique ID number assigned to this employee record</td>
+    </tr>
+
+    <tr>
+        <td>First Name</td>
+        <td><%= record.getFirstName() %></td>
+        <td>Employee's given name</td>
+    </tr>
+
+    <tr>
+        <td>Last Name</td>
+        <td><%= record.getLastName() %></td>
+        <td>Employee's family name</td>
+    </tr>
+
+    <tr>
+        <td>Email</td>
+        <td><%= record.getEmail() %></td>
+        <td>Official contact email address</td>
+    </tr>
+
+    <tr>
+        <td>Department</td>
+        <td><%= record.getDepartment() %></td>
+        <td>The department where the employee works</td>
+    </tr>
+</table>
+
+</body>
+</html>
