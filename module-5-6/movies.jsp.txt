@@ -1,0 +1,18 @@
+<%@ page import="beans.MovieBean" %>
+<%@ page import="java.util.ArrayList" %>
+
+<%
+    MovieBean bean = new MovieBean();
+    ArrayList<String> movies = bean.getAllMovies();
+%>
+
+<h2>Movies</h2>
+<ul>
+<%
+    for(String m : movies){
+%>
+    <li><%= m %></li>
+<%
+    }
+%>
+</ul>
