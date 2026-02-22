@@ -1,0 +1,103 @@
+<%@ page import="beans.MovieBean" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Movie Database</title>
+</head>
+<body>
+<h1>Movie Database Entry</h1>
+<p>Fill out the form below to add a new movie:</p>
+
+<!-- Form for adding new movie -->
+<form method="post" action="movies.jsp">
+    Title: <input type="text" name="title" required><br>
+    Genre: <input type="text" name="genre" required><br>
+    Director: <input type="text" name="director" required><br>
+    Year: <input type="number" name="year" required><br>
+    Rating: <input type="number" step="0.1" name="rating" required><br>
+    <input type="submit" value="Add Movie">
+</form>
+
+<%
+    // Insert movie if form submitted
+    String title = request.getParameter("title");
+    String genre = request.getParameter("genre");
+    String director = request.getParameter("director");
+    String yearStr = request.getParameter("year");
+    String ratingStr = request.getParameter("rating");
+
+    if(title != null && genre != null && director != null && yearStr != null && ratingStr != null) {
+        try {
+            int year = Integer.parseInt(yearStr);
+            double rating = Double.parseDouble(ratingStr);
+
+            MovieBean movie = new MovieBean();
+            movie.setTitle(title);
+            movie.setGenre(genre);
+            movie.setDirector(director);
+            movie.setYear(year);
+            movie.setRating(rating);
+
+            boolean success = movie.insertMovie();
+            if(success) {
+%>
+                <p style="color:green;">Movie added successfully!</p>
+<%
+            } else {
+%>
+                <p style="color:red;">Error adding movie.</p>
+<%
+            }
+
+        } catch(Exception e) {
+%>
+            <p style="color:red;">Invalid input: <%= e.getMessage() %></p>
+<%
+        }
+    }
+%>
+
+<%
+    // Display all movies
+    MovieBean bean = new MovieBean();
+    ArrayList<MovieBean> movies = bean.getAllMovies();
+    
+    
+%>
+
+<h2>All Movies in Database</h2>
+<p>Total Movies Found: <%= movies.size() %></p>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Director</th>
+            <th>Year</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+<%
+    for (MovieBean m : movies) {
+%>
+        <tr>
+            <td><%= m.getId() %></td>
+            <td><%= m.getTitle() %></td>
+            <td><%= m.getGenre() %></td>
+            <td><%= m.getDirector() %></td>
+            <td><%= m.getYear() %></td>
+            <td><%= m.getRating() %></td>
+        </tr>
+<%
+    }
+%>
+    </tbody>
+</table>
+
+<hr>
+</body>
+</html>

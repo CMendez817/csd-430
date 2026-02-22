@@ -1,0 +1,56 @@
+<%@ page import="beans.MovieBean" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+<title>Edit Movie</title>
+
+<style>
+body { font-family: Arial; background:#f4f4f4; text-align:center; }
+.container { margin-top:40px; }
+input { padding:8px; margin:8px; }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+<h2>Edit Movie Record</h2>
+
+<%
+    int movieId = Integer.parseInt(request.getParameter("movieId"));
+
+    MovieBean bean = new MovieBean();
+    MovieBean movie = bean.getMovieById(movieId);
+%>
+
+<form action="updateResult.jsp" method="post">
+
+    <p><strong>Movie ID (Cannot be Changed):</strong> <%= movie.getId() %></p>
+
+    <input type="hidden" name="id" value="<%= movie.getId() %>">
+
+    Title:<br>
+    <input type="text" name="title" value="<%= movie.getTitle() %>" required><br>
+
+    Genre:<br>
+    <input type="text" name="genre" value="<%= movie.getGenre() %>" required><br>
+
+    Director:<br>
+    <input type="text" name="director" value="<%= movie.getDirector() %>" required><br>
+
+    Year:<br>
+    <input type="number" name="year" value="<%= movie.getYear() %>" required><br>
+
+    Rating:<br>
+    <input type="number" step="0.1" name="rating" value="<%= movie.getRating() %>" required><br><br>
+
+    <input type="submit" value="Update Movie">
+
+</form>
+
+<br>
+<a href="index.jsp">Return to Home</a>
+
+</div>
+</body>
+</html>
