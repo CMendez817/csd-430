@@ -1,0 +1,49 @@
+<%@ page import="beans.MovieBean" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+<title>Select Movie to Update</title>
+
+<style>
+body { font-family: Arial; background:#f4f4f4; text-align:center; }
+.container { margin-top:60px; }
+select, input { padding:8px; margin:10px; }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+<h2>Select a Movie to Update</h2>
+
+<%
+    MovieBean bean = new MovieBean();
+    ArrayList<MovieBean> movies = bean.getAllMovies();
+%>
+
+<form action="editMovie.jsp" method="post">
+    <label>Select Movie ID:</label><br>
+
+    <select name="movieId" required>
+        <option value="">-- Select ID --</option>
+        <%
+            for(MovieBean m : movies){
+        %>
+            <option value="<%= m.getId() %>">
+                <%= m.getId() %> - <%= m.getTitle() %>
+            </option>
+        <%
+            }
+        %>
+    </select><br>
+
+    <input type="submit" value="Edit Movie">
+</form>
+
+<br>
+<a href="index.jsp">Return to Home</a>
+
+</div>
+</body>
+</html>
